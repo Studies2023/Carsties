@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres
+    restart: always
+
+    environment:
+#    - POSTGRES_DB=auctions
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgrespw
+    ports:
+    - "5432:5432"
+    volumes:
+    - /var/lib/postresql/data
+
+volumes:
+    pgdata:    
+  
