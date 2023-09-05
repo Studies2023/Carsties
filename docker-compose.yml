@@ -10,8 +10,20 @@ services:
     ports:
     - "5432:5432"
     volumes:
-    - /var/lib/postresql/data
+    - pgdata:/var/lib/postresql/data
+  mongodb:
+    image: mongo
+    environment:
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=mongopw
+    restart: always
+    ports:
+    - "27017:27017"
+    volumes:
+    - mongodata:/var/lib/mongodb/data  
+    
 
 volumes:
-    pgdata:    
+    pgdata:   
+    mongodata:    
   
