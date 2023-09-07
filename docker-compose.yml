@@ -9,7 +9,7 @@ services:
     ports:
     - "5432:5432"
     volumes:
-    - pgdata:/var/lib/postresql/data
+    - /var/lib/postresql/data
 
   mongodb:
     image: mongo
@@ -20,7 +20,7 @@ services:
     ports:
     - "27017:27017"
     volumes:
-    - mongodata:/var/lib/mongodb/data  
+    - /var/lib/mongodb/data  
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -28,12 +28,5 @@ services:
     ports:
     - "5672:5672"
     - "15672:15672"
-#    volumes:
-#    - rabbitmqdata:/var/lib/rabbitmq/data  
-    
 
-volumes:
-    pgdata:   
-    mongodata:    
-#    rabbitmqdata:
   
