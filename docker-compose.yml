@@ -4,13 +4,13 @@ services:
     restart: always
 
     environment:
-#    - POSTGRES_DB=auctions
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=postgrespw
     ports:
     - "5432:5432"
     volumes:
-    - pgdata:/var/lib/postresql/data
+    - /var/lib/postresql/data
+
   mongodb:
     image: mongo
     environment:
@@ -20,10 +20,13 @@ services:
     ports:
     - "27017:27017"
     volumes:
-    - mongodata:/var/lib/mongodb/data  
-    
+    - /var/lib/mongodb/data  
 
-volumes:
-    pgdata:   
-    mongodata:    
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: always
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+
   

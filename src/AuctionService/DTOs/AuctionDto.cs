@@ -1,6 +1,4 @@
-﻿using AuctionService.Entities;
-
-namespace AuctionService.DTOs;
+﻿namespace AuctionService.DTOs;
 
 public sealed class AuctionDto
 {
