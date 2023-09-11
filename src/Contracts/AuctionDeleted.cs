@@ -1,5 +1,6 @@
 ﻿namespace Contracts;
-public sealed class AuctionDeleted
+
+public class AuctionDeleted
 {
     public string Id { get; set; }
 }

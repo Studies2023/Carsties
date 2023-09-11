@@ -1,6 +1,6 @@
 ﻿namespace Contracts;
 
-public sealed class AuctionCreated
+public class AuctionCreated
 {
     public Guid Id { get; set; }
     public int ReservePrice { get; set; }

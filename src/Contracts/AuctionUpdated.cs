@@ -1,5 +1,6 @@
 ﻿namespace Contracts;
-public sealed class AuctionUpdated
+
+public class AuctionUpdated
 {
     public string Id { get; set; }
     public string Make { get; set; }

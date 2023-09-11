@@ -5,23 +5,24 @@ namespace AuctionService.Data;
 
 public class DbInitializer
 {
-    public static void InitDB(WebApplication app)
+    public static void InitDb(WebApplication app)
     {
-           using var serviceScope = app.Services.CreateScope();
-            SeedData(serviceScope.ServiceProvider.GetService<AuctionDbContext>());
+        using var scope = app.Services.CreateScope();
+
+        SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
     }
 
     private static void SeedData(AuctionDbContext context)
     {
         context.Database.Migrate();
 
-        if(context.Auctions.Any())
+        if (context.Auctions.Any())
         {
-            Console.WriteLine("Auctions already exist");
+            Console.WriteLine("Already have data - no need to seed");
             return;
         }
 
-        var auctions = new List<Auction>
+        var auctions = new List<Auction>()
         {
 	    // 1 Ford GT
             new Auction
