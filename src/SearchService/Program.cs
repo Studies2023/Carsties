@@ -20,6 +20,12 @@ builder.Services.AddMassTransit(x =>
     x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(prefix: "search", includeNamespace: false));
     x.UsingRabbitMq((context, cfg) =>
     {
+        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", h =>
+        {
+            h.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
+            h.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
+        });
+
         cfg.ReceiveEndpoint("search-auction-created", e =>
         {
             e.UseMessageRetry(r => r.Interval(retryCount: 5, interval: 5));
@@ -41,9 +47,9 @@ app.Lifetime.ApplicationStarted.Register(async () =>
     {
         await DbInitializer.InitDb(app);
     }
-    catch (Exception ex)
+    catch (Exception e)
     {
-        Console.WriteLine(ex.Message);
+        Console.WriteLine(e);
     }
 });
 
